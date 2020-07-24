@@ -109,6 +109,7 @@
     self.view.backgroundColor = self.backgroundColor;
     self.view.tintColor = self.tintColor;
     self.navigationItem.leftBarButtonItem.tintColor = self.view.tintColor;
+    self.navigationItem.rightBarButtonItem.tintColor = self.view.tintColor;
     self.navigationController.view.backgroundColor = self.navigationViewBackgroundColor;
     self.navigationController.navigationBar.barTintColor = self.navigationBarBarTintColor;
     self.navigationController.navigationBar.tintColor = self.navigationBarTintColor;
@@ -330,11 +331,22 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:self.closeButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(close)];
-
+    UIBarButtonItem *closeItem;
+    
+    if (self.closeButtonText && self.closeButtonText.length > 0) {
+        closeItem = [[UIBarButtonItem alloc] initWithTitle:self.closeButtonText style:UIBarButtonItemStylePlain target:self action:@selector(close)];
+    } else {
+        closeItem = [[UIBarButtonItem alloc] initWithImage:self.closeButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(close)];
+    }
+    
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName: self.navigationBarTitleTextColor };
     
-    self.navigationItem.leftBarButtonItem = leftItem;
+    if (self.closeButtonRight) {
+        self.navigationItem.rightBarButtonItem = closeItem;
+    } else {
+        self.navigationItem.leftBarButtonItem = closeItem;
+    }
+    
     self.navigationItem.title = NSLocalizedString(@"About", @"UINavigationBar Title");
 }
 

@@ -86,7 +86,17 @@
 /*!
  *  The image for the button to dismiss the RFAboutViewController. Defaults to image of "X".
  */
-@property (nonatomic, weak) UIImage *closeButtonImage;
+@property (nonatomic, strong) UIImage *closeButtonImage;
+
+/*!
+ *  The text for the button to dismiss the RFAboutViewController, used in place of closeButtonImage if set.
+ */
+@property (nonatomic, strong) NSString *closeButtonText;
+
+/*!
+ *  If YES, the close button is placed on right side of the navbar, else on the left.
+ */
+@property (nonatomic, assign) BOOL closeButtonRight;
 
 /*!
  *  Determines if the header background image should be blurred. Defaults to YES.
