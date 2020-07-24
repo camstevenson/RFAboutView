@@ -348,6 +348,9 @@
     }
     
     self.navigationItem.title = NSLocalizedString(@"About", @"UINavigationBar Title");
+    
+    CGSize viewSize = self.navigationController.view.bounds.size;
+    self.scrollViewContainerWidth.constant = viewSize.width;
 }
 
 - (void)addAdditionalButtonWithTitle:(NSString *)title subtitle:(NSString *)subtitle andContent:(NSString *)content {
